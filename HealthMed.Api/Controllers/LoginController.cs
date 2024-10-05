@@ -3,6 +3,7 @@ using HealthMed.Application.Interfaces;
 using HealthMed.Application.Requests.Login;
 using HealthMed.Domain.Entities;
 using Mapster;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HealthMed.Api.Controllers
@@ -22,6 +23,7 @@ namespace HealthMed.Api.Controllers
             _tokenService = tokenService;
         }
 
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult Login([FromBody] LoginRequest request)
         {

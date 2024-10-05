@@ -8,6 +8,6 @@ namespace HealthMed.Domain.Entities
 {
     public class PacienteModel : UsuarioComumModel
     {
-
+        public ICollection<AgendamentoModel> Consultas { get; set; }
     }
 }

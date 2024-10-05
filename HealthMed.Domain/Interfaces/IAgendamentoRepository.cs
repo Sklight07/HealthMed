@@ -7,9 +7,8 @@ using System.Threading.Tasks;
 
 namespace HealthMed.Domain.Interfaces
 {
-    public interface IMedicoRepository : IComumRepository<MedicoModel>
+    public interface IAgendamentoRepository : IComumRepository<AgendamentoModel>
     {
-        MedicoModel ObterEmailSenha(string email, string senha);
-        List<MedicoModel> ListarTodosMedicosComHorariosDisponiveis();
+        List<AgendamentoModel> ObterPorIdPaciente(int idPaciente);
     }
 }

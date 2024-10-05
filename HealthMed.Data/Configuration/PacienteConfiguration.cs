@@ -16,6 +16,10 @@ namespace HealthMed.Data.Configuration
             builder.Property(u => u.Senha).HasColumnType("VARCHAR(30)").IsRequired();
             builder.Property(u => u.CPF).HasColumnType("VARCHAR(11)").IsRequired();
             builder.Property(u => u.Email).HasColumnType("VARCHAR(100)").IsRequired();
+
+            builder.HasMany(p => p.Consultas)
+            .WithOne(c => c.Paciente)
+            .HasForeignKey(c => c.PacienteId);
         }
     }
 }

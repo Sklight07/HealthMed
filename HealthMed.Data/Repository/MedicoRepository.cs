@@ -19,6 +19,22 @@ namespace HealthMed.Data.Repository
             _dbContext = dbContext;
         }
 
+        public List<MedicoModel> ListarTodosMedicosComHorariosDisponiveis()
+        {
+            try
+            {
+                return _dbContext.Medico
+                    .Include(m => m.HorariosDisponiveis)
+                    .AsNoTracking()// Inclui os horários associados
+                    .Where(m => m.HorariosDisponiveis.Any(h => h.Disponivel)) // Filtra médicos com ao menos um horário disponível
+                    .ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public MedicoModel ObterEmailSenha(string email, string senha)
         {
             try
@@ -27,7 +43,7 @@ namespace HealthMed.Data.Repository
             }
             catch (Exception ex)
             {
-                return null;
+                throw ex;
             }
         }
     }

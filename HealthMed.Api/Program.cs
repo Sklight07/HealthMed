@@ -61,6 +61,8 @@ builder.Services.AddScoped<IMedicoRepository, MedicoRepository>();
 builder.Services.AddScoped<IPacienteUseCase, PacienteUseCase>();
 builder.Services.AddScoped<IPacienteRepository, PacienteRepository>();
 builder.Services.AddScoped<ITokenService, TokenService>();
+builder.Services.AddScoped<IHorariosDisponiveisMedicoRepository, HorariosDisponiveisMedicoRepository>();
+builder.Services.AddScoped<IAgendamentoRepository, AgendamentoRepository>();
 
 builder.Services.AddAuthentication(authService => {
     authService.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

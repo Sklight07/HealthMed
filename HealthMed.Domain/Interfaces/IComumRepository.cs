@@ -11,7 +11,7 @@ namespace HealthMed.Domain.Interfaces
     {
         IList<T> ObterTodos();
         T ObterPorId(int id);
-        void Cadastrar(T comum);
+        int Cadastrar(T comum);
         void Alterar(T comum);
         void Excluir(int id);
     }

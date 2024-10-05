@@ -20,5 +20,7 @@ namespace HealthMed.Data.Data
 
         public DbSet<MedicoModel> Medico { get; set; }
         public DbSet<PacienteModel> Paciente { get; set; }
+        public DbSet<HorariosDisponiveisMedicoModel> HorariosDisponiveisMedico { get; set; }
+        public DbSet<AgendamentoModel> Agendamento { get; set; }
     }
 }

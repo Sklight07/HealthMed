@@ -4,6 +4,7 @@ using HealthMed.Data.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthMed.Api.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241005011459_MigrationHeathMedHorariosDisp")]
+    partial class MigrationHeathMedHorariosDisp
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,39 +25,6 @@ namespace HealthMed.Api.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("HealthMed.Domain.Entities.AgendamentoModel", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("DataConsulta")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("HorarioId")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("MedicoId")
-                        .HasColumnType("INT");
-
-                    b.Property<int>("PacienteId")
-                        .HasColumnType("INT");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("HorarioId")
-                        .IsUnique()
-                        .HasDatabaseName("IX_Consulta_HorarioId");
-
-                    b.HasIndex("MedicoId");
-
-                    b.HasIndex("PacienteId");
-
-                    b.ToTable("HM_AGENDAMENTO", (string)null);
-                });
-
             modelBuilder.Entity("HealthMed.Domain.Entities.HorariosDisponiveisMedicoModel", b =>
                 {
                     b.Property<int>("Id")
@@ -62,9 +32,6 @@ namespace HealthMed.Api.Migrations
                         .HasColumnType("INT");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("Data")
-                        .HasColumnType("date");
 
                     b.Property<int>("DiaSemana")
                         .HasColumnType("int");
@@ -162,33 +129,6 @@ namespace HealthMed.Api.Migrations
                     b.ToTable("HM_PACIENTE", (string)null);
                 });
 
-            modelBuilder.Entity("HealthMed.Domain.Entities.AgendamentoModel", b =>
-                {
-                    b.HasOne("HealthMed.Domain.Entities.HorariosDisponiveisMedicoModel", "HorarioDisponivel")
-                        .WithMany()
-                        .HasForeignKey("HorarioId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("HealthMed.Domain.Entities.MedicoModel", "Medico")
-                        .WithMany("Consultas")
-                        .HasForeignKey("MedicoId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.HasOne("HealthMed.Domain.Entities.PacienteModel", "Paciente")
-                        .WithMany("Consultas")
-                        .HasForeignKey("PacienteId")
-                        .OnDelete(DeleteBehavior.Restrict)
-                        .IsRequired();
-
-                    b.Navigation("HorarioDisponivel");
-
-                    b.Navigation("Medico");
-
-                    b.Navigation("Paciente");
-                });
-
             modelBuilder.Entity("HealthMed.Domain.Entities.HorariosDisponiveisMedicoModel", b =>
                 {
                     b.HasOne("HealthMed.Domain.Entities.MedicoModel", "Medico")
@@ -202,14 +142,7 @@ namespace HealthMed.Api.Migrations
 
             modelBuilder.Entity("HealthMed.Domain.Entities.MedicoModel", b =>
                 {
-                    b.Navigation("Consultas");
-
                     b.Navigation("HorariosDisponiveis");
-                });
-
-            modelBuilder.Entity("HealthMed.Domain.Entities.PacienteModel", b =>
-                {
-                    b.Navigation("Consultas");
                 });
 #pragma warning restore 612, 618
         }

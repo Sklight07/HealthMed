@@ -23,6 +23,15 @@ namespace HealthMed.Data.Configuration
             builder.Property(u => u.NumeroCrm).HasColumnType("VARCHAR(15)").IsRequired();
             builder.Property(u => u.UfCrm).HasColumnType("VARCHAR(2)").IsRequired();
             builder.Property(u => u.Email).HasColumnType("VARCHAR(100)").IsRequired();
+
+            builder.HasMany(m => m.HorariosDisponiveis)
+              .WithOne(h => h.Medico)
+              .HasForeignKey(h => h.MedicoId)
+              .OnDelete(DeleteBehavior.Cascade);
+
+            builder.HasMany(m => m.Consultas)
+           .WithOne(c => c.Medico)
+           .HasForeignKey(c => c.MedicoId);
         }
     }
 }

@@ -10,5 +10,11 @@ namespace HealthMed.Domain.Entities
     {
         public string NumeroCrm { get; set; }
         public string UfCrm { get; set; }
+
+        [System.Text.Json.Serialization.JsonIgnore]
+        public ICollection<HorariosDisponiveisMedicoModel> HorariosDisponiveis { get; set; }
+
+        [System.Text.Json.Serialization.JsonIgnore]
+        public ICollection<AgendamentoModel> Consultas { get; set; }
     }
 }

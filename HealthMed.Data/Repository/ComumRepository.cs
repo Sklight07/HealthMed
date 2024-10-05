@@ -28,10 +28,11 @@ namespace HealthMed.Data.Repository
             _dbContext.SaveChanges();
         }
 
-        public void Cadastrar(T entidade)
+        public int Cadastrar(T entidade)
         {
             _dbSet.Add(entidade);
             _dbContext.SaveChanges();
+            return entidade.Id;
         }
 
         public void Excluir(int id)
